@@ -5,12 +5,11 @@
 
 ## Sorting algorithms
 
-bubble_sort <- function(arr) {
+bubble <- function(arr) {
   n <- length(arr)
   for (i in 1:(n - 1)) {
     for (j in 1:(n - i)) {
       if (arr[j] > arr[j + 1]) {
-        # Swap elements arr[j] and arr[j + 1]
         temp <- arr[j]
         arr[j] <- arr[j + 1]
         arr[j + 1] <- temp
@@ -22,7 +21,7 @@ bubble_sort <- function(arr) {
 
 
 
-quick_sort <- function(arr) {
+quick <- function(arr) {
   if (length(arr) <= 1) {
     return(arr)
   }
@@ -31,40 +30,45 @@ quick_sort <- function(arr) {
   middle <- arr[arr == pivot] # Elements equal to the pivot
   right <- arr[arr > pivot] # Elements greater than the pivot
 
-  return(c(quick_sort(left), middle, quick_sort(right)))
+  return(c(quick(left), middle, quick(right)))
 }
 
 
-#' Title:  Function to run algorithm multiple times and check the time it takes
-#' Argument algorithm: the package provide the function for a bubble sort (bubble_sort)
-#' and a quick sort (quick_sort). Thus, those can be used as inputs. If one wish to
-#' compare speed of other functions, write those and use them as input.
+#' Title:  Function to run a list of algorithm multiple times and check the time it takes them to sort the same data
 #'
-#' @param algorithm The sorting algortihms you wish to compare. Present them in a list. As a default it will be list(bubble_sort, quick_sort)
-#' @param arr The argument that needs to be sorted. It can take both numeric values and characters
-#' @param number The number of time the sorting is compared
 #'
-#' @return Time it takes to sort the argument
+#' The *algorithm_speed()* compares the speed of different sorting algorithms.
+#' The package *Wind* provide the function for a bubble sort (bubble)
+#' and a quick sort (quick). Thus, those can be used as inputs. However, if one wish to
+#' compare speed of other sorting algorithms, one can write those and use them as input
+#' in *algorithm_speed()*.
+#'
+#
+#' @param argument The argument that needs to be sorted. It can take both numeric values and characters
+#' @param repetition The number of time the sorting is performed.
+#' @param algorithm The sorting algorithms you wish to compare. Present them in a list. As a default it will be list(bubble_sort, quick_sort)
+#'
+#' @return The function will return 2 lists of times (or more if you made more sorting algorithms to compare),
+#' where the times listed is the time it took to sort the  argument at each repetition. The function also print the list of names
+#' of the algorithm input. Now you can compare the time it took to sort the chosen argument.
 #' @export
 #'
 #' @examples
-#' Function call
-#' check_algorithm(algorithm = list(quick_sort, bubble_sort), arr = sample(1:1000), number = 10)
-#' check_algorithm(arr = sample(1:1000), number = 10)
-#' check_algorithm(arr = LETTERS, number = 10) # it can also take letters
-#'  example data
-#' df <- c("e","t","p","y")
-#' check_algorithm(arr = df, number = 10)
+#' # Examples of different function call
+#' algorithm_speed(algorithm = list(quick, bubble), argument = sample(1:1000), repetition = 10)
+#' algorithm_speed(argument = sample(1:1000), repetition = 10)
+#' algorithm_speed(argument = LETTERS, repetition = 10) # it can also take letters
 
-check_algorithm <- function(algorithm = list(bubble_sort, quick_sort), arr, number) {
+
+algorithm_speed <- function(algorithm = list(bubble, quick), argument, repetition ) {
   time <- list()
 
   for (a in 1:length(algorithm)) { # here we go through each algorithm in the list
     tmp_result <- c() # empty vector to fill in time info to
 
-    for (b in 1:number) { # here we go through each element in the sample
+    for (b in 1:repetition) { # here we go through each element in the sample
       tmp_time <- Sys.time() # time upon starting
-      algorithm[[a]](arr) # The algorithm is called to sort the argument = arr
+      algorithm[[a]](argument) # The algorithm is called to sort the argument = arr
       tmp_result <- c(tmp_result, Sys.time() - tmp_time) # the time difference from start to finish, thus the full time it takes to sort
     }
 
@@ -75,5 +79,4 @@ check_algorithm <- function(algorithm = list(bubble_sort, quick_sort), arr, numb
   print(paste("Algorithm:", name))
   return(time)
 }
-
 

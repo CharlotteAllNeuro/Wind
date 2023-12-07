@@ -9,19 +9,28 @@ sliding_window(data, window_size, window_type)
 \arguments{
 \item{data}{The sequential input data}
 
-\item{window_size}{The size of the window}
+\item{window_size}{The size of the window, eg. 10.}
 
 \item{window_type}{The window type. window_type takes one of 2 inputs:
-"Max_diff" or "MinVal". This will make the function run either window_Max_diff
+\emph{"Max_diff"} or \emph{"MinVal"}. This will make the function run either window_Max_diff
 or window_Min_val, respectively}
 }
 \value{
-Orginal data with an extra column
+The function will return you the original data with an extra column. The
+extra column will be either Max_diff or Min_val depending on your window_type
 }
 \description{
-Title: Sliding window function
+This function will run through a sequential data input (\emph{data}) with a sliding window.
+The window size is chosen in the the function argument \emph{window_size}. For each
+window it will fine either the minimum value (\emph{"Min_val"}) or the maximum
+difference (\emph{"Max_diff"}) in the window.
 }
 \examples{
-Calling the function with: window size 10 and a threshold = 5.
-sliding_window(Test_data_frame, 10, "Max_diff")
+
+# Test data
+df <- tibble(x= runif(100), y=x*2)
+# Window size 10 and a window_type = "Min_val"
+sliding_window(df, 10, "Min_val")
+# Window size 10 and a window_type = "Max_diff"
+sliding_window(df, 10, "Max_diff")
 }

@@ -41,7 +41,7 @@ window_Min_val <- function(data){
 #' *"Max_diff"* or *"MinVal"*. This will make the function run either window_Max_diff
 #' or window_Min_val, respectively
 #'
-#' @return The function will return you the orginal data with an extra column. The
+#' @return The function will return you the original data with an extra column. The
 #' extra column will be either Max_diff or Min_val depending on your window_type
 #'
 #' @export

@@ -3,7 +3,7 @@ Title: Sliding window and function comparison
 Version: 0.0.0.9000
 Authors@R: 
     person("Charlotte", "Sørensen", , "serensencs@gmail.com", role = "ctb")
-Description: Process sequential data with a sliding window and compare time complexity of functions
+Description: Process sequential data with a sliding window (sliding_window()) and compare the speed of different sorting algorithms (algorithm_speed())
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -12,4 +12,5 @@ URL: https://github.com/CharlotteAllNeuro/Wind
 BugReports: https://github.com/CharlotteAllNeuro/Wind/issues
 Imports: 
     dplyr,
-    ggplot2
+    ggplot2,
+    tibble
