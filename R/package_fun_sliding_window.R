@@ -29,18 +29,31 @@ window_Min_val <- function(data){
 
 #' Title: Sliding window function
 #'
+#' This function will run through a sequential data input (*data*) with a sliding window.
+#' The window size is chosen in the the function argument *window_size*. For each
+#' window it will fine either the minimum value (*"Min_val"*) or the maximum
+#' difference (*"Max_diff"*) in the window.
+#'
+#'
 #' @param data The sequential input data
-#' @param window_size The size of the window
+#' @param window_size The size of the window, eg. 10.
 #' @param window_type The window type. window_type takes one of 2 inputs:
-#' "Max_diff" or "MinVal". This will make the function run either window_Max_diff
+#' *"Max_diff"* or *"MinVal"*. This will make the function run either window_Max_diff
 #' or window_Min_val, respectively
 #'
-#' @return Orginal data with an extra column
+#' @return The function will return you the orginal data with an extra column. The
+#' extra column will be either Max_diff or Min_val depending on your window_type
+#'
 #' @export
 #'
 #' @examples
-#' Calling the function with: window size 10 and a threshold = 5.
-#' sliding_window(Test_data_frame, 10, "Max_diff")
+#'
+#' # Test data
+#' df <- tibble(x= runif(100), y=x*2)
+#' # Window size 10 and a window_type = "Min_val"
+#' sliding_window(df, 10, "Min_val")
+#' # Window size 10 and a window_type = "Max_diff"
+#' sliding_window(df, 10, "Max_diff")
 
 sliding_window <- function(data, window_size, window_type) {
 
